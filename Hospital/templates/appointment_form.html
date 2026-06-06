@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="card shadow-sm">
+            <div class="card-body p-5">
+                <h3 class="card-title text-center mb-4 text-primary fw-bold">Schedule Appointment</h3>
+
+                <form method="POST" class="django-form">
+                    {% csrf_token %}
+
+                    <div class="form-row">
+                        <label>Select Patient</label>
+                        {{ form.patient }}
+                    </div>
+
+                    <div class="form-row">
+                        <label>Select Doctor</label>
+                        {{ form.doctor }}
+                    </div>
+
+                    <div class="form-row">
+                        <label>Date and Time</label>
+                        {{ form.appointment_date }}
+                        <small class="text-muted mt-1 d-block">Ensure the selected time does not overlap with existing schedules.</small>
+                    </div>
+
+                    <div class="d-grid mt-5">
+                        <button type="submit" class="btn btn-primary btn-lg shadow-sm">
+                            Confirm Appointment
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <div class="text-center mt-3">
+            <a href="{% url 'appointment_list' %}" class="text-muted text-decoration-none">&larr; Back to Appointments</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
